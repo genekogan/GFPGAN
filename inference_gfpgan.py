@@ -42,6 +42,9 @@ def main():
         default='auto',
         help='Image extension. Options: auto | jpg | png, auto means using the same extension as inputs. Default: auto')
     parser.add_argument('-w', '--weight', type=float, default=0.5, help='Adjustable weights.')
+    model_path
+    parser.add_argument(
+        '-m', '--model_path', type=str, default='experiments/pretrained_models', help='Location of GFPGAN pretrained models path')
     args = parser.parse_args()
 
     args = parser.parse_args()
@@ -108,7 +111,7 @@ def main():
         raise ValueError(f'Wrong model version {args.version}.')
 
     # determine model paths
-    model_path = os.path.join('gpfgan_files', model_name + '.pth')
+    model_path = os.path.join(args.model_path, model_name + '.pth')
     if not os.path.isfile(model_path):
         model_path = os.path.join('gfpgan/weights', model_name + '.pth')
     if not os.path.isfile(model_path):
